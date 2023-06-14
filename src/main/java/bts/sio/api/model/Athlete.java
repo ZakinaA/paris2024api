@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -27,6 +29,11 @@ public class Athlete {
     @JoinColumn(name = "pays_id")
     private Pays pays;
 
+    @ManyToMany
+    @JoinTable( name = "athlete_olympiade",
+            joinColumns = @JoinColumn( name = "athlete_id" ),
+            inverseJoinColumns = @JoinColumn( name = "olympiade_id" ) )
+    private List<Olympiade> olympiades = new ArrayList<>();
 
 
 
